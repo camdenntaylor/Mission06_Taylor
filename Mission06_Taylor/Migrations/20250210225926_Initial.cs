@@ -21,7 +21,7 @@ namespace Mission06_Taylor.Migrations
                     Year = table.Column<int>(type: "INTEGER", nullable: false),
                     Director = table.Column<string>(type: "TEXT", nullable: false),
                     Rating = table.Column<string>(type: "TEXT", nullable: false),
-                    Edited = table.Column<bool>(type: "INTEGER", nullable: false),
+                    Edited = table.Column<bool>(type: "INTEGER", nullable: true),
                     LentTo = table.Column<string>(type: "TEXT", nullable: true),
                     Notes = table.Column<string>(type: "TEXT", nullable: true)
                 },
