@@ -8,8 +8,16 @@
     <h2>Movie Database Entry</h2>
 
     <form  method="post">
-        <label asp-for="Category">Category:</label>
-        <input asp-for="Category" required><br><br>
+        <label asp-for="MovieId" hidden></label><br><br>
+
+        <label asp-for="CategoryId">Category:</label>
+        <select asp-for="CategoryId">
+            <option value="">Select a category:</option>
+            @foreach (Category c in ViewBag.Categories)
+            {
+                <option value="@c.CategoryId">@c.CategoryName</option>
+            }
+        </select><br><br>
 
         <label asp-for="Title">Title:</label>
         <input asp-for="Title" required><br><br>
@@ -37,6 +45,13 @@
 
         <label asp-for="LentTo">Lent To:</label>
         <input asp-for="LentTo"><br><br>
+
+        <label asp-for="CopiedToPlex">Copied to Plex:</label>
+        <select asp-for="CopiedToPlex">
+            <option value="">--select--</option>
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+        </select><br><br>
 
         <label asp-for="Notes">Notes:</label>
         <input asp-for="Notes" maxlength="25"><br><br>

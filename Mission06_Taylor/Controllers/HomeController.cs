@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Mission06_Taylor.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Mission06_Taylor.Controllers
 {
@@ -25,6 +26,10 @@ namespace Mission06_Taylor.Controllers
         [HttpGet]
         public IActionResult AddMovie()
         {
+            ViewBag.Categories = _context.Categories
+                .OrderBy(x => x.CategoryName)
+                .ToList();
+
             return View();
         }
 
@@ -35,6 +40,17 @@ namespace Mission06_Taylor.Controllers
             _context.SaveChanges(); //commit
 
             return View("Confirmation", response);
+        }
+
+
+        //Get MovieList view and pass data from movies table
+        public IActionResult MovieList()
+        {
+            var movies = _context.Movies
+                .Include(x => x.Category)
+                .ToList();
+
+            return View(movies);
         }
     }
 }
