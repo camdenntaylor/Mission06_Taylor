@@ -13,6 +13,7 @@
         <label asp-for="CategoryId">Category:</label>
         <select asp-for="CategoryId">
             <option value="">Select a category:</option>
+            <!--loops through categories and displays them in dropdown-->
             @foreach (Category c in ViewBag.Categories)
             {
                 <option value="@c.CategoryId">@c.CategoryName</option>

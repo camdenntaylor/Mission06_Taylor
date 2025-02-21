@@ -23,6 +23,8 @@ namespace Mission06_Taylor.Controllers
             return View();
         }
 
+        //displays addmovie page and sends it ViewBag which contains each category 
+        //so it can be displayed in a dropdown
         [HttpGet]
         public IActionResult AddMovie()
         {
@@ -36,6 +38,7 @@ namespace Mission06_Taylor.Controllers
         [HttpPost]
         public IActionResult AddMovie(Movie response)
         {
+            //checks if model is valid before movie is added
             if (ModelState.IsValid)
             {
                 _context.Movies.Add(response); // add record to database
@@ -80,6 +83,7 @@ namespace Mission06_Taylor.Controllers
             return View("AddMovie", recordToEdit);
         }
 
+        //updates the database (_context) with new movie info (updatedInfo)
         [HttpPost]
         public IActionResult EditMovie(Movie updatedInfo)
             
@@ -90,6 +94,7 @@ namespace Mission06_Taylor.Controllers
             return RedirectToAction("MovieList");
         }
 
+        //displays delete movie confirmation page
         [HttpGet]
         public IActionResult DeleteMovie(int id) 
         {
@@ -99,6 +104,7 @@ namespace Mission06_Taylor.Controllers
             return View("Delete", recordToDelete);
         }
 
+        //deletes the movie (deletedMovie) from the database (_context)
         [HttpPost]
         public IActionResult DeleteMovie(Movie deletedMovie)
         {
